@@ -87,6 +87,148 @@ GET '/categories'
 '5' : "Entertainment",
 '6' : "Sports"}
 
+GET '/questions'
+- Returns a list of questions (and paginates them in groups of 10), a success value, a list of categories, and the total number of questions in the database. 
+- Request Arguments: None
+- Returns: Sample from curl http://127.0.0.1:5000/questions:
+
+{
+  "categories": [
+    {
+      "id": 1, 
+      "type": "Science"
+    }, 
+    {
+      "id": 2, 
+      "type": "Art"
+    }, 
+    {
+      "id": 3, 
+      "type": "Geography"
+    }, 
+    {
+      "id": 4, 
+      "type": "History"
+    }, 
+    {
+      "id": 5, 
+      "type": "Entertainment"
+    }, 
+    {
+      "id": 6, 
+      "type": "Sports"
+    }
+  ], 
+  "current_category": 6, 
+  "questions": [
+    {
+      "answer": "Alexander Fleming", 
+      "category": 1, 
+      "difficulty": 3, 
+      "id": 21, 
+      "question": "Who discovered penicillin?"
+    }, 
+    {
+      "answer": "Blood", 
+      "category": 1, 
+      "difficulty": 4, 
+      "id": 22, 
+      "question": "Hematology is a branch of medicine involving the study of what?"
+    }, 
+    {
+      "answer": "The Liver", 
+      "category": 1, 
+      "difficulty": 4, 
+      "id": 20, 
+      "question": "What is the heaviest organ in the human body?"
+    }, 
+    .....
+  ], 
+  "success": true, 
+  "total_questions": 19
+}
+
+DELETE '/questions/<int:id>'
+
+- Deletes a question of a given id. This can be done through pressing a trash can icon within the question.
+- Request Arguements: id. This represents the chosen questions ID.
+- Results: Removes the selected question from the database and the new list of questions is returned.
+
+POST '/questions'
+
+- Adds a new question to the database with given question, answer, difficulty and category. Can be accessed through the "Form" section of the app.
+- Request Arguements: requests information of content type Json. example: {'question': 'What is the speed of light?', 'answer': '3*10^8 ms^-1', 'difficulty': '3', 'category': 1}
+Results: Adds the new question to the database and returns a fresh "Form" page.
+
+POST '/questions/search'
+
+- Takes a search term and returns all questions that contain the given word or phrase. the search is case insensitive.
+- Request Arguements: Requests the search term through Json.
+- Returns: A list of questions that contain the search term, the number of questions and a success confirmation.
+
+GET '/categories/<int:id>/questions'
+
+- Recieves a Category ID and then returns all questions of that category pagenated in groups of 10 along with total questions, current cantegory and a success response.
+- Request Arguements: id. This represents the category id.
+- Returns: Sample from curl http://127.0.0.1:5000//categories/1/questions
+{
+  "currentCategory": {
+    "1": "Science"
+  }, 
+  "questions": [
+    {
+      "answer": "The Liver", 
+      "category": 1, 
+      "difficulty": 4, 
+      "id": 20, 
+      "question": "What is the heaviest organ in the human body?"
+    }, 
+    {
+      "answer": "Blood", 
+      "category": 1, 
+      "difficulty": 4, 
+      "id": 22, 
+      "question": "Hematology is a branch of medicine involving the study of what?"
+    }, 
+    {
+      "answer": "No", 
+      "category": 1, 
+      "difficulty": 1, 
+      "id": 24, 
+      "question": "Did Einstein create the Atomic Bomb?"
+    }, 
+    {
+      "answer": "Green", 
+      "category": 1, 
+      "difficulty": 5, 
+      "id": 29, 
+      "question": "What is my favourite colour?"
+    }, 
+    {
+      "answer": "3*10^8 ms^-1", 
+      "category": 1, 
+      "difficulty": 3, 
+      "id": 30, 
+      "question": "What is the speed of light?"
+    }
+  ], 
+  "success": true, 
+  "total_questions": 5
+}
+
+POST '/quizzes'
+
+- Recieves information about category and previous questions through Json and then returns a further question within the given category (including a category which selects all questions) which hasn't been seen before in that instance of the Quiz.
+- Request Arguements: Takes through Json previous_questions and quizCategory.
+- Returns: A single question and a success response. Example question:
+{
+      "answer": "The Liver", 
+      "category": 1, 
+      "difficulty": 4, 
+      "id": 20, 
+      "question": "What is the heaviest organ in the human body?"
+    }
+
 ```
 
 
