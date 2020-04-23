@@ -36,7 +36,7 @@ class TriviaTestCase(unittest.TestCase):
         """Executed after reach test"""
         pass
     
-        def test_get_paginated_questions(self):
+    def test_get_paginated_questions(self):
         res = self.client().get('/questions')
         data = json.loads(res.data)
 
